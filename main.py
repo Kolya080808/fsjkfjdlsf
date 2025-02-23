@@ -82,25 +82,19 @@ def upload():
                 and archive.filename.rsplit('.', 1)[1].lower() == 'zip':
                 random_dir = os.urandom(32).hex()
                 os.makedirs(app.config['UPLOAD_FOLDER']+random_dir)
-                save_path = os.path.join(app.config['UPLOAD_FOLDER']+random_dir+'/', f'{random}.zip')
+               save_path = os.path.join(f"{app.config['UPLOAD_FOLDER']}{random_dir}/", f"{random}.zip")
                 print(save_path)
                 archive.save(save_path)
                 extract(save_path, random_dir)
                 valid_files, invalid_files = process_files(random_dir)
-                
-                # Используем напрямую переданное значение из запроса в шаблон
-                user_input = request.args.get('cmd', '')
-                
                 if invalid_files:
-                    error_message = f"Extracted successfully, but some files are invalid: {', '.join(invalid_files)}; {user_input}"
+                    error_message = f"Extracted successfully, but some files are invalid: {', '.join(invalid_files)}"
                 else:
-                    error_message = f"App was extracted successfully and all files are valid. {user_input}"
-
+                    error_message = "App was extracted successfully and all files are valid."
                 return render_template('index.html', error=error_message)
         return render_template('index.html', error="Not valid zip file, try again")
     except Exception as e:
          return render_template('index.html', error=f'Error: {e}')
 
-
 if __name__ == '__main__':
-    app.run(port=5001, host='127.0.0.1', debug=True)
+    app.run(port=5050, host='127.0.0.1', debug=True)
