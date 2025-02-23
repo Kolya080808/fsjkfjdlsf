@@ -1,0 +1,14 @@
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.5      04fec8a65eb1
+
+#DNS query type A
+158.160.47.242   inno-open25-infosec.ru
+#TODO add other sub-domain and his external ip
+127.0.0.1        site.inno-open25-infosec.ru
+
+127.0.0.1 6d5mteam.inno-open25-infosec.ru
